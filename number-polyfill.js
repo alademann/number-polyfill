@@ -12,7 +12,9 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
     var i, numberPolyfill, options;
     options = {
       inputClass: "form-control",
-      btnClass: "btn"
+      btnClass: "btn btn-xs",
+      btnUpContent: "<i class='caret caret-up' />",
+      btnDownContent: "<i class='caret caret-down' />"
     };
     i = document.createElement("input");
     i.setAttribute("type", "number");
@@ -52,6 +54,8 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
         });
         this.upBtn.appendTo(this.btnContainer);
         this.downBtn.appendTo(this.btnContainer);
+        this.options.btnUpContent.appendTo(this.upBtn);
+        this.options.btnDownContent.appendTo(this.downBtn);
         this.elem.wrap($fieldContainer);
         this.btnContainer.insertAfter(this.elem);
         this.elem.on({

@@ -7,7 +7,9 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
   ###
   options = { 
     inputClass: "form-control",
-    btnClass: "btn"
+    btnClass: "btn btn-xs",
+    btnUpContent: "<i class='caret caret-up' />",
+    btnDownContent: "<i class='caret caret-down' />"
   }
   
   i = document.createElement "input"
@@ -40,6 +42,8 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
       $fieldContainer = $ '<span/>', { style: "white-space: nowrap" }
       @upBtn.appendTo @btnContainer
       @downBtn.appendTo @btnContainer
+      @options.btnUpContent.appendTo @upBtn
+      @options.btnDownContent.appendTo @downBtn
       @elem.wrap($fieldContainer)
       @btnContainer.insertAfter @elem
 
