@@ -1,80 +1,103 @@
-/* HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-polyfill*/
-div.number-spin-btn-container {
+/*! HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-polyfill*/
+/* line 10, src/number-polyfill.scss */
+.number-spin-btn-container {
   display: inline-block;
   position: relative;
   vertical-align: bottom;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
-div.number-spin-btn {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+/* line 18, src/number-polyfill.scss */
+.number-spin-btn {
   border-width: 2px;
-  border-color: #ededed #777777 #777777 #ededed;
   border-style: solid;
+  border-color: #ededed #777777 #777777 #ededed;
   background-color: #cccccc;
-  width: 1.2em; }
-  div.number-spin-btn:hover {
-    cursor: pointer; }
-  div.number-spin-btn:active {
-    border-width: 2px;
-    border-color: #5e5e5e #d8d8d8 #d8d8d8 #5e5e5e;
-    border-style: solid;
-    background-color: #999999; }
-
-div.number-spin-btn-up {
-  border-bottom-width: 1px;
-  -moz-border-radius: 3px 3px 0px 0px;
-  -webkit-border-radius: 3px 3px 0px 0px;
-  border-radius: 3px 3px 0px 0px; }
-  div.number-spin-btn-up:before {
-    border-width: 0 0.3em 0.3em 0.3em;
-    border-color: transparent transparent black transparent;
-    top: 25%; }
-  div.number-spin-btn-up:active {
-    border-bottom-width: 1px; }
-  div.number-spin-btn-up:active:before {
-    border-bottom-color: white;
-    top: 26%;
-    left: 51%; }
-
-div.number-spin-btn-down {
-  border-top-width: 1px;
-  -moz-border-radius: 0px 0px 3px 3px;
-  -webkit-border-radius: 0px 0px 3px 3px;
-  border-radius: 0px 0px 3px 3px; }
-  div.number-spin-btn-down:before {
-    border-width: 0.3em 0.3em 0 0.3em;
-    border-color: black transparent transparent transparent;
-    top: 75%; }
-  div.number-spin-btn-down:active {
-    border-top-width: 1px; }
-  div.number-spin-btn-down:active:before {
-    border-top-color: white;
-    top: 76%;
-    left: 51%; }
-
-div.number-spin-btn-up:before,
-div.number-spin-btn-down:before {
+  width: 1.2em;
+}
+/* line 25, src/number-polyfill.scss */
+.number-spin-btn:before {
   content: "";
   width: 0;
   height: 0;
   border-style: solid;
   position: absolute;
   left: 50%;
-  margin: -0.15em 0 0 -0.3em;
-  padding: 0; }
+  margin: -.15em 0 0 -.3em;
+  padding: 0;
+}
+/* line 36, src/number-polyfill.scss */
+.number-spin-btn:hover {
+  cursor: pointer;
+}
+/* line 40, src/number-polyfill.scss */
+.number-spin-btn:active {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #5e5e5e #d8d8d8 #d8d8d8 #5e5e5e;
+  background-color: #999999;
+}
 
-input:disabled + div.number-spin-btn-container > div.number-spin-btn-up:active, input:disabled + div.number-spin-btn-container > div.number-spin-btn-down:active {
+/* line 48, src/number-polyfill.scss */
+.number-spin-btn-up {
+  border-bottom-width: 1px;
+  border-radius: 3px 3px 0 0;
+}
+/* line 51, src/number-polyfill.scss */
+.number-spin-btn-up:before {
+  border-width: 0 .3em .3em .3em;
+  border-color: transparent transparent black transparent;
+  top: 25%;
+}
+/* line 56, src/number-polyfill.scss */
+.number-spin-btn-up:active {
+  border-bottom-width: 1px;
+}
+/* line 59, src/number-polyfill.scss */
+.number-spin-btn-up:active:before {
+  border-bottom-color: white;
+  top: 26%;
+  left: 51%;
+}
+
+/* line 66, src/number-polyfill.scss */
+.number-spin-btn-down {
+  border-top-width: 1px;
+  border-radius: 0 0 3px 3px;
+}
+/* line 69, src/number-polyfill.scss */
+.number-spin-btn-down:before {
+  border-width: .3em .3em 0 .3em;
+  border-color: black transparent transparent transparent;
+  top: 75%;
+}
+/* line 76, src/number-polyfill.scss */
+.number-spin-btn-down:active {
+  border-top-width: 1px;
+}
+/* line 79, src/number-polyfill.scss */
+.number-spin-btn-down:active:before {
+  border-top-color: white;
+  top: 76%;
+  left: 51%;
+}
+
+/* line 88, src/number-polyfill.scss */
+input:disabled + .number-spin-btn-container > .number-spin-btn-up:active, input:disabled + .number-spin-btn-container > .number-spin-btn-down:active {
   border-color: #ededed #777777 #777777 #ededed;
   border-style: solid;
-  background-color: #cccccc; }
-input:disabled + div.number-spin-btn-container > div.number-spin-btn-up:before, input:disabled + div.number-spin-btn-container > div.number-spin-btn-up:active:before {
+  background-color: #cccccc;
+}
+/* line 94, src/number-polyfill.scss */
+input:disabled + .number-spin-btn-container > .number-spin-btn-up:before, input:disabled + .number-spin-btn-container > .number-spin-btn-up:active:before {
   border-bottom-color: #999999;
   top: 25%;
-  left: 50%; }
-input:disabled + div.number-spin-btn-container > div.number-spin-btn-down:before, input:disabled + div.number-spin-btn-container > div.number-spin-btn-down:active:before {
+  left: 50%;
+}
+/* line 100, src/number-polyfill.scss */
+input:disabled + .number-spin-btn-container > .number-spin-btn-down:before, input:disabled + .number-spin-btn-container > .number-spin-btn-down:active:before {
   border-top-color: #999999;
   top: 75%;
-  left: 50%; }
+  left: 50%;
+}
