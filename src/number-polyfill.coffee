@@ -2,10 +2,19 @@
 HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-polyfill
 ###
 (($) ->
+  ###
+  OPTIONS
+  ###
+  options = { 
+    inputClass: "form-control",
+    btnClass: "btn"
+  }
+  
   i = document.createElement "input"
   i.setAttribute "type", "number"
+  i.setAttribute "class", options.inputClass
   if i.type == "text"
-    $.fn.inputNumber = ->
+    $.fn.inputNumber = () ->
       $(this).filter ->
         $this = $(this)
         return $this.is('input[type="number"]') and not (
@@ -15,17 +24,18 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
           $this.next().children().eq(1).is("div.number-spin-btn-down")
         )
       .each ->
-        numberPolyfill.polyfills.push(new numberPolyfill(this))
+        numberPolyfill.polyfills.push(new numberPolyfill(this, options))
         return
       return $(this)
 
-    numberPolyfill = (elem)->
+    numberPolyfill = (elem, options)->
       @elem = $(elem)
+      @options = options
       unless @elem.is(":root *") && @elem.height() > 0
         throw new Error("Element must be in DOM and displayed so that its height can be measured.")
       halfHeight = (@elem.outerHeight() / 2) + 'px'
-      @upBtn = $ '<div/>', { class: 'number-spin-btn number-spin-btn-up', style: "height: #{halfHeight}" }
-      @downBtn = $ '<div/>', { class: 'number-spin-btn number-spin-btn-down', style: "height: #{halfHeight}" }
+      @upBtn = $ '<div/>', { class: @options.btnClass + ' number-spin-btn number-spin-btn-up', style: "height: #{halfHeight}" }
+      @downBtn = $ '<div/>', { class: @options.btnClass + ' number-spin-btn number-spin-btn-down', style: "height: #{halfHeight}" }
       @btnContainer = $ '<div/>', { class: 'number-spin-btn-container' }
       $fieldContainer = $ '<span/>', { style: "white-space: nowrap" }
       @upBtn.appendTo @btnContainer
