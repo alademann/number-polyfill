@@ -11,14 +11,14 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
      */
     var i, numberPolyfill, options;
     options = {
+      isDisabled: false,
       inputClass: "form-control",
-      btnClass: "btn btn-xs",
+      btnClass: "btn",
       btnUpContent: "<i class='caret caret-up' />",
       btnDownContent: "<i class='caret caret-down' />"
     };
     i = document.createElement("input");
     i.setAttribute("type", "number");
-    i.setAttribute("class", options.inputClass);
     if (i.type === "text") {
       $.fn.inputNumber = function() {
         $(this).filter(function() {
@@ -26,6 +26,13 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
           $this = $(this);
           return $this.is('input[type="number"]') && !($this.parent().is("span") && $this.next().is("div.number-spin-btn-container") && $this.next().children().first().is("div.number-spin-btn-up") && $this.next().children().eq(1).is("div.number-spin-btn-down"));
         }).each(function() {
+          var disabledClass;
+          options.isDisabled = $(this).is(':disabled');
+          disabledClass = ' ';
+          if (options.isDisabled) {
+            disabledClass = ' disabled ';
+          }
+          options.btnClass += disabledClass;
           numberPolyfill.polyfills.push(new numberPolyfill(this, options));
         });
         return $(this);
@@ -38,6 +45,7 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
           throw new Error("Element must be in DOM and displayed so that its height can be measured.");
         }
         halfHeight = (this.elem.outerHeight() / 2) + 'px';
+        this.elem.addClass('number-polyfill');
         this.upBtn = $('<div/>', {
           "class": this.options.btnClass + ' number-spin-btn number-spin-btn-up',
           style: "height: " + halfHeight
@@ -54,8 +62,8 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
         });
         this.upBtn.appendTo(this.btnContainer);
         this.downBtn.appendTo(this.btnContainer);
-        this.options.btnUpContent.appendTo(this.upBtn);
-        this.options.btnDownContent.appendTo(this.downBtn);
+        $(this.options.btnUpContent).appendTo(this.upBtn);
+        $(this.options.btnDownContent).appendTo(this.downBtn);
         this.elem.wrap($fieldContainer);
         this.btnContainer.insertAfter(this.elem);
         this.elem.on({

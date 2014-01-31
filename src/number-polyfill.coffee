@@ -6,15 +6,15 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
   OPTIONS
   ###
   options = { 
+    isDisabled: false,
     inputClass: "form-control",
-    btnClass: "btn btn-xs",
+    btnClass: "btn",
     btnUpContent: "<i class='caret caret-up' />",
     btnDownContent: "<i class='caret caret-down' />"
   }
   
   i = document.createElement "input"
   i.setAttribute "type", "number"
-  i.setAttribute "class", options.inputClass
   if i.type == "text"
     $.fn.inputNumber = () ->
       $(this).filter ->
@@ -26,6 +26,12 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
           $this.next().children().eq(1).is("div.number-spin-btn-down")
         )
       .each ->
+        options.isDisabled = $(this).is(':disabled');
+        disabledClass = ' '
+        if options.isDisabled
+          disabledClass = ' disabled '
+        
+        options.btnClass += disabledClass
         numberPolyfill.polyfills.push(new numberPolyfill(this, options))
         return
       return $(this)
@@ -36,14 +42,15 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
       unless @elem.is(":root *") && @elem.height() > 0
         throw new Error("Element must be in DOM and displayed so that its height can be measured.")
       halfHeight = (@elem.outerHeight() / 2) + 'px'
+      @elem.addClass('number-polyfill')
       @upBtn = $ '<div/>', { class: @options.btnClass + ' number-spin-btn number-spin-btn-up', style: "height: #{halfHeight}" }
       @downBtn = $ '<div/>', { class: @options.btnClass + ' number-spin-btn number-spin-btn-down', style: "height: #{halfHeight}" }
       @btnContainer = $ '<div/>', { class: 'number-spin-btn-container' }
       $fieldContainer = $ '<span/>', { style: "white-space: nowrap" }
       @upBtn.appendTo @btnContainer
       @downBtn.appendTo @btnContainer
-      @options.btnUpContent.appendTo @upBtn
-      @options.btnDownContent.appendTo @downBtn
+      $(@options.btnUpContent).appendTo @upBtn
+      $(@options.btnDownContent).appendTo @downBtn
       @elem.wrap($fieldContainer)
       @btnContainer.insertAfter @elem
 
