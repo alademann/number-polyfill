@@ -17,9 +17,12 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
       btnUpContent: "<i class='caret caret-up' />",
       btnDownContent: "<i class='caret caret-down' />"
     };
-    i = document.createElement("input");
-    i.setAttribute("type", "number");
-    if (i.type === "text") {
+    
+    if (typeof Modernizr === 'undefined') {
+        throw new Error('number-polyfill.js requires Modernizr');
+    }
+    
+    if (Modernizr && !Modernizr.inputtypes.number) {
       $.fn.inputNumber = function() {
         $(this).filter(function() {
           var $this;

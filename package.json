@@ -1,10 +1,13 @@
 {
   "name": "number-polyfill",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "author": "Aaron Lademann",
   "repository": {
     "type": "git",
     "url": "https://github.com/alademann/number-polyfill.git"
+  },
+  "dependencies": {
+    "grunt-modernizr": "~0.4.1"  
   },
   "devDependencies": {
     "grunt": "~0.4.1",
