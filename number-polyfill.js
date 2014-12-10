@@ -14,8 +14,8 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
       isDisabled: false,
       inputClass: "form-control",
       btnClass: "btn btn-xs btn-default",
-      btnUpContent: "<i class='caret caret-up' />",
-      btnDownContent: "<i class='caret caret-down' />"
+      btnUpContent: "<i class='caret caret-sm caret-up' />",
+      btnDownContent: "<i class='caret caret-sm' />"
     };
     i = document.createElement("input");
     i.setAttribute("type", "number");
