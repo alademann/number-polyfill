@@ -5,14 +5,14 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
   ###
   OPTIONS
   ###
-  options = { 
+  options = {
     isDisabled: false,
     inputClass: "form-control",
-    btnClass: "btn",
+    btnClass: "btn btn-xs btn-default",
     btnUpContent: "<i class='caret caret-up' />",
     btnDownContent: "<i class='caret caret-down' />"
   }
-  
+
   i = document.createElement "input"
   i.setAttribute "type", "number"
   if i.type == "text"
@@ -30,7 +30,7 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
         disabledClass = ' '
         if options.isDisabled
           disabledClass = ' disabled '
-        
+
         options.btnClass += disabledClass
         numberPolyfill.polyfills.push(new numberPolyfill(this, options))
         return
@@ -157,7 +157,7 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
         return (num.num[0...(-num.precision)] + "." + num.num[(-num.precision)...]).replace(/\.?0+$/, '').replace(/^(-?)(\.)/, "$10$2")
       else
         return num.num
-        
+
     numberPolyfill.preciseAdd = (num1, num2) ->
       if (typeof num1 == "number" || (typeof num1 == "object" && num1 instanceof Number)) && (typeof num2 == "number" || (typeof num2 == "object" && num2 instanceof Number))
         if num1 % 1 == 0 && num2 % 1 == 0

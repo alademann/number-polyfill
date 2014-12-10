@@ -13,16 +13,13 @@ HTML5 Number polyfill | Jonathan Stipe | https://github.com/jonstipe/number-poly
     options = {
       isDisabled: false,
       inputClass: "form-control",
-      btnClass: "btn",
+      btnClass: "btn btn-xs btn-default",
       btnUpContent: "<i class='caret caret-up' />",
       btnDownContent: "<i class='caret caret-down' />"
     };
-    
-    if (typeof Modernizr === 'undefined') {
-        throw new Error('number-polyfill.js requires Modernizr');
-    }
-    
-    if (Modernizr && !Modernizr.inputtypes.number) {
+    i = document.createElement("input");
+    i.setAttribute("type", "number");
+    if (i.type === "text") {
       $.fn.inputNumber = function() {
         $(this).filter(function() {
           var $this;
